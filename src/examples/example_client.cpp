@@ -96,7 +96,7 @@ int main(int argc, char ** argv)
 
       // Example from any UA server, standard dynamic variable node:
       //std::vector<std::string> varpath{ "Objects", "Server", "ServerStatus", "CurrentTime" };
-      std::vector<std::string> varpath{"Objects","2:Sinumerik", "/Channel","/Channel/Spindle","/Channel/Spindle/actSpeed" };
+      std::vector<std::string> varpath{"Objects","2:Sinumerik", "/Channel","/Channel/Spindle"};
       myvar = root.GetChild(varpath);
 
       logger->info("got node: {}", myvar);

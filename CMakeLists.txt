@@ -8,13 +8,13 @@ endif()
 project(freeopcua)
 
 option(BUILD_CLIENT "Build Client" ON)
-option(BUILD_SERVER "Build Server" ON)
+option(BUILD_SERVER "Build Server" OFF)
 
 option(SSL_SUPPORT_MBEDTLS "Support rsa-oaep password encryption using mbedtls library " OFF)
 
-option(BUILD_PYTHON "Build Python bindings" ON)
+option(BUILD_PYTHON "Build Python bindings" OFF)
 option(BUILD_TESTING "Build and run tests" OFF)
-OPTION(BUILD_SHARED_LIBS "Build shared libraries." ON)
+OPTION(BUILD_SHARED_LIBS "Build shared libraries." OFF)
 
 IF (NOT DEFINED CMAKE_INSTALL_LIBDIR)
     SET(CMAKE_INSTALL_LIBDIR lib)
