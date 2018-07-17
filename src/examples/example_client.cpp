@@ -31,12 +31,14 @@ class SubClient : public SubscriptionHandler
 int main(int argc, char ** argv)
 {
   auto logger = spdlog::stderr_color_mt("client");
-  //logger->set_level(spdlog::level::debug);
+ // logger->set_level(spdlog::level::debug);
   try
     {
       //std::string endpoint = "opc.tcp://192.168.56.101:48030";
       //std::string endpoint = "opc.tcp://user:password@192.168.56.101:48030";
-      std::string endpoint = "opc.tcp://127.0.0.1:4840/freeopcua/server/";
+      std::string endpoint = "opc.tcp://OpcUaClient:DIMA@192.168.100.212:4840";
+      //std::string endpoint = "opc.tcp://192.168.100.212:4840";
+      //std::string endpoint = "opc.tcp://127.0.0.1:4840/freeopcua/server/";
       //std::string endpoint = "opc.tcp://localhost:53530/OPCUA/SimulationServer/";
       //std::string endpoint = "opc.tcp://localhost:48010";
 
@@ -76,27 +78,34 @@ int main(int argc, char ** argv)
       //Get namespace index we are interested in
 
       // From freeOpcUa Server:
-      uint32_t idx = client.GetNamespaceIndex("http://examples.freeopcua.github.io");
+    //**  uint32_t idx = client.GetNamespaceIndex("http://examples.freeopcua.github.io");
       ////Get Node using path (BrowsePathToNodeId call)
       //std::vector<std::string> varpath({ std::to_string(idx) + ":NewObject", "MyVariable" });
       //myvar = objects.GetChild(varpath);
-      std::vector<std::string> methodpath({ std::to_string(idx) + ":NewObject" });
+      /*std::vector<std::string> methodpath({ std::to_string(idx) + ":NewObject" });
       myobject = objects.GetChild(methodpath);
       methodpath = { std::to_string(idx) + ":NewObject", "MyMethod" };
       mymethod = objects.GetChild(methodpath);
       std::vector<OpcUa::Variant> arguments;
       arguments.push_back(static_cast<uint8_t>(0));
       myobject.CallMethod(mymethod.GetId(), arguments);
-
+*/
       // Example data from Prosys server:
       //std::vector<std::string> varpath({"Objects", "5:Simulation", "5:Random1"});
       //myvar = root.GetChild(varpath);
 
       // Example from any UA server, standard dynamic variable node:
-      std::vector<std::string> varpath{ "Objects", "Server", "ServerStatus", "CurrentTime" };
+      //std::vector<std::string> varpath{ "Objects", "Server", "ServerStatus", "CurrentTime" };
+      std::vector<std::string> varpath{"Objects","2:Sinumerik", "/Channel","/Channel/Spindle","/Channel/Spindle/actSpeed" };
       myvar = root.GetChild(varpath);
 
       logger->info("got node: {}", myvar);
+
+
+      logger->info("Child of objects node are:");
+
+       for (OpcUa::Node node : myvar.GetChildren())
+         { logger->info("    {}", node); }
 
       //Subscription
       SubClient sclt;

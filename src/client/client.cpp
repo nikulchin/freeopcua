@@ -256,8 +256,8 @@ void UaClient::Connect(const EndpointDescription & endpoint)
     Common::Uri uri(session.EndpointUrl);
     std::string user = uri.User();
     std::string password = uri.Password();
+    password = std::string("\x5f\x1f\x03\xf6\x88\x5d\x9a\xb6\x80\x2e\x1b\xc7\x13\x7c\x69\x54\x96\x14\x1b\x64\xa8\x70\x74\x32\xc4\xe9\x97\x52\x4e\x59\x42\x67\x19\x06\x48\x46\xb9\xf8\x28\xeb\xca\x37\xf8\x46\x9e\xa4\x8d\x8b\xb7\x6b\x54\xe6\x89\xbe\x83\xe7\x64\x73\x16\x1f\x45\x6d\x59\xad\xa9\x64\x37\x5c\x08\xbd\xe6\xd7\x09\xf4\x84\x96\x99\x5d\x51\x49\x8d\xd1\xc3\xdf\x0c\x15\x93\x64\xa1\x42\xc1\x6b\x6c\xb8\x5d\xf0\xac\x07\xdb\xe1\x9e\x2c\xba\xab\xdf\xf0\xda\x91\x3e\x2e\x95\xe1\x9e\xcd\x4d\xfb\xe5\x7e\x2b\x78\x1a\xc6\x6b\xdc\x89\x31\x50\x41");
     bool user_identify_token_found = false;
-    sessionParameters.ClientSignature.Algorithm = "http://www.w3.org/2000/09/xmldsig#rsa-sha1";
 
     for (auto ep : createSessionResponse.Parameters.ServerEndpoints)
       {
@@ -279,9 +279,11 @@ void UaClient::Connect(const EndpointDescription & endpoint)
                   {
                     if (token.TokenType == UserTokenType::UserName)
                       {
-                        sessionParameters.UserIdentityToken.setPolicyId(token.PolicyId);
+ //                       sessionParameters.UserIdentityToken.setPolicyId(token.PolicyId);
+                        sessionParameters.UserIdentityToken.setPolicyId("http://opcfoundation.org/UA/SecurityPolicy#Basic128Rsa15");
+
                         sessionParameters.UserIdentityToken.setUser(user, password);
-                        EncryptPassword(sessionParameters.UserIdentityToken, createSessionResponse);
+                       // EncryptPassword(sessionParameters.UserIdentityToken, createSessionResponse);
                         user_identify_token_found = true;
                         break;
                       }

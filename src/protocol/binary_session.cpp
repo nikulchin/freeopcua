@@ -46,7 +46,7 @@ void UserIdentifyToken::setUser(const std::string & user, const std::string & pa
   Header.TypeId.FourByteData.Identifier = USER_IdENTIFY_TOKEN_USERNAME;
   UserName.UserName = user;
   UserName.Password = password;
-  //UserName.EncryptionAlgorithm = "http://www.w3.org/2001/04/xmlenc#rsa-oaep";
+  UserName.EncryptionAlgorithm = "http://www.w3.org/2001/04/xmlenc#rsa-1_5";
 }
 
 void UserIdentifyToken::setPolicyId(const std::string & id)

@@ -93,3 +93,9 @@ vscode
 
 # QtCreator
 CMakeLists.txt.user
+
+
+.autotools
+.cproject
+.settings
+
