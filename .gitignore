@@ -99,3 +99,4 @@ CMakeLists.txt.user
 .cproject
 .settings
 
+build.sh
