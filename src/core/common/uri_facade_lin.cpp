@@ -44,7 +44,7 @@ void Uri::Initialize(const std::string &uriString)
    rest of URI is query + fragment, currently not used in freeopcua
    (.*)
    */
-  std::regex uri_regex("([a-zA-Z][a-zA-Z0-9.+-]*)://(([^@:]*)(:([^@]+))?@)?([^/:?]+)(:([0-9]+))?(/[^?#]*)?(.*)");
+  std::regex uri_regex("([a-zA-Z][a-zA-Z0-9.+-]*)://(([^@:]*)(:([^@]+))?@)?([^/:?]+)(:([0-9]+))?(/[^?#]*)?(.*)", std::regex_constants::basic);
   std::smatch uri_match;
   if (!std::regex_match(uriString, uri_match, uri_regex))
     {
