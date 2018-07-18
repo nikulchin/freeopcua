@@ -95,6 +95,9 @@ public:
   // a call to GetServerEndpoints()
   void Connect(const EndpointDescription &);
 
+  void Connect(const EndpointDescription & endpoint, std::string user,std::string host, unsigned port);
+
+
   /// @brief Disconnect from server
   // close communication with OPC-UA server, close all threads and subscriptions
   void Disconnect();
