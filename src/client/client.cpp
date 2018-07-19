@@ -124,7 +124,7 @@ UaClient::UaClient(bool debug)
     }
   else
     {
-      Logger->set_level(spdlog::level::info);
+      Logger->set_level(spdlog::level::off);
     }
   KeepAlive.SetLogger(Logger);
 }
