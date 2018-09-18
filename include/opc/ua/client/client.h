@@ -95,7 +95,7 @@ public:
   // a call to GetServerEndpoints()
   void Connect(const EndpointDescription &);
 
-  void Connect(const EndpointDescription & endpoint, std::string user,std::string host, unsigned port);
+  void Connect(const EndpointDescription & endpoint, std::string user,std::string host, unsigned port, std::string security_token);
 
 
   /// @brief Disconnect from server

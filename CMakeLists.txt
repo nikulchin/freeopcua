@@ -325,6 +325,7 @@ if (BUILD_CLIENT)
     src/client/binary_client.cpp
     src/client/binary_client_addon.cpp
     src/client/client.cpp
+    src/client/base64.cpp
     )
 
     if (NOT CMAKE_VERSION VERSION_LESS 2.8.12)
